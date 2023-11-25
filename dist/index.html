@@ -14,21 +14,36 @@
 
         <div class="border border-black dark:border-white rounded-md p-8 flex flex-col justify-stretch gap-8">
             <!-- Heading -->
-            <h2 class="dark:text-white text-4xl md:text-5xl font-[300] tracking-wide">Create your Todo-List</h2>
+            <h1 class="dark:text-white text-4xl md:text-5xl font-[300] tracking-wide">Create your Todo-List</h1>
 
             <!-- Input For Task And Button -->
             <div class="flex items-stretch justify-between gap-4">
-                <input type="text" placeholder="What are your tasks for today?" class="bg-transparent border border-black dark:border-white p-4 rounded-xl flex-1 tracking-wide dark:text-white focus:outline-none">
-                <button class="dark:text-white tracking-wide border border-black dark:border-white px-6 rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000]">Add</button>
+                <input type="text" placeholder="What are your tasks for today?" class="bg-transparent border border-black dark:border-white p-3 md:p-4 rounded-lg flex-1 tracking-wide dark:text-white focus:outline-none">
+                <button class="dark:text-white tracking-wide border border-black dark:border-white px-4 md:px-6 rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000]">Add</button>
             </div>
 
             <!-- Filter Tasks Div -->
             <div class="border-b border-black dark:border-white">
-                <select class="w-full py-1 rounded-lg bg-transparent dark:text-white focus:outline-none">
+                <select class="w-full md:py-1 rounded-lg bg-transparent dark:text-white focus:outline-none">
                     <option class="dark:bg-[#162719] dark-text-white">Show all</option>
                     <option class="dark:bg-[#162719] dark-text-white">Pending</option>
                     <option class="dark:bg-[#162719] dark-text-white">Completed</option>
                 </select>
+            </div>
+
+            <!-- Task List Div -->
+            <div class="flex flex-col gap-4">
+                <!-- Task Div -->
+                <div class="flex justify-between border border-[#fa9924] rounded-lg">
+                    <!-- Task Name -->
+                    <p class="flex-1 dark:text-white text-lg p-3 md:p-4">Sample Text</p>
+                    <!-- Buttons Div -->
+                    <div class="flex items-stretch gap-4 px-4">
+                        <button class="text-[#0d9a77] font-[500]">EDIT</button>
+                        <button class="text-[#fa9924] font-[500]">COMPLETED</button>
+                        <button class="text-[#d71437] font-[500]">DELETE</button>
+                    </div>
+                </div>
             </div>
 
         </div>
