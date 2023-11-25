@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,31 @@
     <title>To-Do List</title>
 </head>
 
-<body>
+<body class="dark:bg-[#162719] flex justify-center items-center min-h-screen">
+
+    <main class="w-[90%] md:w-[60%]">
+
+        <div class="border border-black dark:border-white rounded-md p-8 flex flex-col justify-stretch gap-8">
+            <!-- Heading -->
+            <h2 class="dark:text-white text-4xl md:text-5xl font-[300] tracking-wide">Create your Todo-List</h2>
+
+            <!-- Input For Task And Button -->
+            <div class="flex items-stretch justify-between gap-4">
+                <input type="text" placeholder="What are your tasks for today?" class="bg-transparent border border-black dark:border-white p-4 rounded-xl flex-1 tracking-wide dark:text-white focus:outline-none">
+                <button class="dark:text-white tracking-wide border border-black dark:border-white px-6 rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000]">Add</button>
+            </div>
+
+            <!-- Filter Tasks Div -->
+            <div class="border-b border-black dark:border-white">
+                <select class="w-full py-1 rounded-lg bg-transparent dark:text-white focus:outline-none">
+                    <option class="dark:bg-[#162719] dark-text-white">Show all</option>
+                    <option class="dark:bg-[#162719] dark-text-white">Pending</option>
+                    <option class="dark:bg-[#162719] dark-text-white">Completed</option>
+                </select>
+            </div>
+
+        </div>
+    </main>
 </body>
 
 </html>
