@@ -11,8 +11,13 @@
 
 <body class="dark:bg-[#040D12] flex justify-center items-center min-h-screen">
 
+    <div id="overlay" class="absolute bg-black w-screen h-full z-10 opacity-40 flex justify-center items-center hidden">
+    </div>
+    <div id="loader" class="absolute z-20 flex flex-col gap-2 justify-center items-center hidden">
+        <img class="w-1/4" src="loader.png" alt="Wait">
+        <p class="text-white tracking-wider">Adding Task...</p>
+    </div>
     <main class="w-[90%] md:w-[60%]">
-
         <div
             class="border border-black dark:border-white rounded-md p-4 py-6 md:p-8 flex flex-col justify-stretch gap-8">
             <!-- Heading -->
