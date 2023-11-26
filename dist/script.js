@@ -3,22 +3,30 @@ const overlay = document.querySelector("#overlay");
 const loader = document.querySelector("#loader");
 const taskListDiv = document.querySelector("#taskListDiv");
 
-console.log(localStorageTasks)
-
 function showEmptyMessage() {
     const heading3 = document.createElement("h3");
-    heading3.textContent = "No tasks to show"
+    heading3.textContent = "No tasks to show";
     heading3.id = "emptyMessage";
-    heading3.classList.add("dark:text-white", "text-xl")
-    taskListDiv.appendChild(heading3)
+    heading3.classList.add("dark:text-white", "text-xl");
+    taskListDiv.appendChild(heading3);
+}
+
+function deleteTask(e) {
+    const taskDivId = e.target.parentElement.parentElement.id;
+    localStorageTasks = localStorageTasks.filter(task => task.id !== taskDivId);
+    document.getElementById(taskDivId).remove();
+    localStorage.setItem("taskList", JSON.stringify(localStorageTasks));
+    if (!localStorageTasks.length) showEmptyMessage();
 }
 
 function createTaskDiv(task) {
     // create parent task div
     const taskDiv = document.createElement("div");
+    taskDiv.id = task.id;
     taskDiv.classList.add("w-full", "flex", "justify-between", "border", "border-[#fa992f]", "rounded-lg");
     // create task name
     const taskName = document.createElement("p");
+    taskName.setAttribute("title", `Created On: ${task.date}\nStatus: ${task.status.toUpperCase()}`);
     taskName.classList.add("flex-1", "dark:text-white", "md:text-lg", "p-3", "md:p-4");
     taskName.textContent = task.taskName;
     // create button div
@@ -26,18 +34,21 @@ function createTaskDiv(task) {
     buttonDiv.classList.add("flex", "justify-evenly", "items-center", "gap-4", "px-4");
     // Edit Button
     const editButton = document.createElement("button");
+    editButton.setAttribute("title", "Edit Task");
     editButton.classList.add("text-[#0d9a77]", "font-[500]", "text-md", "md:text-lg", "focus:outline-none", "fa", "fa-edit");
     // Complete Button
     const completeButton = document.createElement("button");
+    completeButton.setAttribute("title", "Mark as complete");
     completeButton.classList.add("text-[#fa9924]", "font-[500]", "text-md", "md:text-lg", "focus:outline-none", "fa", "fa-check");
     // Delete Button
     const deleteButton = document.createElement("button");
+    deleteButton.addEventListener("click", (e) => deleteTask(e));
+    deleteButton.setAttribute("title", "Delete Task");
     deleteButton.classList.add("text-[#d71437]", "font-[500]", "text-md", "md:text-lg", "focus:outline-none", "fa", "fa-trash");
 
     buttonDiv.appendChild(editButton);
     buttonDiv.appendChild(completeButton);
     buttonDiv.appendChild(deleteButton);
-
 
     // append taskName to taskDiv
     taskDiv.appendChild(taskName);
@@ -68,6 +79,7 @@ function addTaskToLocalStorage(taskName) {
     // Hide empty message on adding task
     const emptyMessage = document.querySelector("#emptyMessage");
     if (emptyMessage) emptyMessage.classList.add("hidden");
+
     createTaskDiv(object);
 }
 
@@ -86,7 +98,6 @@ function addTask() {
     // call addTaskToLocalStorage after 1 sec
     setTimeout(() => addTaskToLocalStorage(taskName), 1000);
 }
-
 
 if (!localStorageTasks.length) {
     showEmptyMessage();
