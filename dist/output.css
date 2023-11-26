@@ -1024,6 +1024,10 @@ video {
     width: 60%;
   }
 
+  .md\:w-\[65\%\] {
+    width: 65%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -1042,6 +1046,18 @@ video {
 
   .md\:p-8 {
     padding: 2rem;
+  }
+
+  .md\:p-12 {
+    padding: 3rem;
+  }
+
+  .md\:p-10 {
+    padding: 2.5rem;
+  }
+
+  .md\:p-2 {
+    padding: 0.5rem;
   }
 
   .md\:px-6 {

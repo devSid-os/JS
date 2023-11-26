@@ -9,32 +9,35 @@
     <title>To-Do List</title>
 </head>
 
-<body class="dark:bg-[#040D12] flex justify-center items-center min-h-screen">
+<!-- Tailwind style structure -->
+<!-- [width,heights] flexProperties paddings text borders -->
 
-    <div id="overlay" class="absolute bg-black w-screen h-full z-10 opacity-40 flex justify-center items-center hidden">
+<body class="min-h-screen flex justify-center items-center dark:bg-[#040D12]">
+
+    <div id="overlay" class="w-screen h-full flex justify-center items-center absolute z-10 opacity-40 bg-black hidden">
     </div>
-    <div id="loader" class="absolute z-20 flex flex-col gap-2 justify-center items-center hidden">
+    <div id="loader" class="flex flex-col justify-center items-center gap-2 absolute z-20 hidden">
         <img class="w-1/4" src="loader.png" alt="Wait">
         <p class="text-white tracking-wider">Adding Task...</p>
     </div>
-    <main class="w-[90%] md:w-[60%]">
+    <main class="w-[90%] md:w-[65%]">
         <div
-            class="border border-black dark:border-white rounded-md p-4 py-6 md:p-8 flex flex-col justify-stretch gap-8">
+            class="flex flex-col justify-stretch gap-8 p-4 py-6 border-black dark:border-white border rounded-md md:p-10">
             <!-- Heading -->
-            <h1 class="dark:text-white text-4xl md:text-5xl font-[300] tracking-wide">Create your Todo-List</h1>
+            <h1 class="text-3xl md:text-5xl font-[300] tracking-wide dark:text-white">Create your Todo-List</h1>
 
             <!-- Input For Task And Button -->
             <div class="flex items-stretch justify-between gap-4">
                 <input type="text" id="taskName" placeholder="What are your tasks for today?"
-                    class="bg-transparent border border-black dark:border-white p-3 md:p-4 rounded-lg flex-1 tracking-wide dark:text-white focus:outline-none">
+                    class="flex-1 p-3 dark:text-white bg-transparent border-black dark:border-white border rounded-lg tracking-wide md:p-4 focus:outline-none">
                 <button onclick="addTask()" type="button"
-                    class="dark:text-white tracking-wide border border-black dark:border-white px-4 md:px-6 rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000] focus:outline-none">Add</button>
+                    class="px-4 dark:text-white tracking-wide border border-black dark:border-white rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000] focus:outline-none md:px-6">Add</button>
             </div>
 
             <!-- Filter Tasks Div -->
             <div class="border-b border-black dark:border-white">
                 <select
-                    class="w-full md:py-1 cursor-pointer rounded-lg bg-transparent dark:text-white focus:outline-none">
+                    class="w-full cursor-pointer rounded-lg bg-transparent dark:text-white focus:outline-none md:py-1">
                     <option class="dark:bg-[#040D12] dark-text-white">Show all</option>
                     <option class="dark:bg-[#040D12] dark-text-white">Pending</option>
                     <option class="dark:bg-[#040D12] dark-text-white">Completed</option>
@@ -42,7 +45,7 @@
             </div>
 
             <!-- Task List Div -->
-            <div class="flex flex-col gap-4">
+            <div id="taskListDiv" class="flex flex-col items-center gap-4">
                 <!-- Task Div -->
                 <div class="w-full flex justify-between border border-[#fa9924] rounded-lg">
                     <!-- Task Name -->
