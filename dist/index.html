@@ -1,47 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="output.css">
     <title>To-Do List</title>
 </head>
 
-<body class="dark:bg-[#162719] flex justify-center items-center min-h-screen">
+<body class="dark:bg-[#040D12] flex justify-center items-center min-h-screen">
 
     <main class="w-[90%] md:w-[60%]">
 
-        <div class="border border-black dark:border-white rounded-md p-8 flex flex-col justify-stretch gap-8">
+        <div
+            class="border border-black dark:border-white rounded-md p-4 py-6 md:p-8 flex flex-col justify-stretch gap-8">
             <!-- Heading -->
             <h1 class="dark:text-white text-4xl md:text-5xl font-[300] tracking-wide">Create your Todo-List</h1>
 
             <!-- Input For Task And Button -->
             <div class="flex items-stretch justify-between gap-4">
-                <input type="text" placeholder="What are your tasks for today?" class="bg-transparent border border-black dark:border-white p-3 md:p-4 rounded-lg flex-1 tracking-wide dark:text-white focus:outline-none">
-                <button class="dark:text-white tracking-wide border border-black dark:border-white px-4 md:px-6 rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000] focus:outline-none">Add</button>
+                <input type="text" id="taskName" placeholder="What are your tasks for today?"
+                    class="bg-transparent border border-black dark:border-white p-3 md:p-4 rounded-lg flex-1 tracking-wide dark:text-white focus:outline-none">
+                <button onclick="addTask()" type="button"
+                    class="dark:text-white tracking-wide border border-black dark:border-white px-4 md:px-6 rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000] focus:outline-none">Add</button>
             </div>
 
             <!-- Filter Tasks Div -->
             <div class="border-b border-black dark:border-white">
-                <select class="w-full md:py-1 rounded-lg bg-transparent dark:text-white focus:outline-none">
-                    <option class="dark:bg-[#162719] dark-text-white">Show all</option>
-                    <option class="dark:bg-[#162719] dark-text-white">Pending</option>
-                    <option class="dark:bg-[#162719] dark-text-white">Completed</option>
+                <select
+                    class="w-full md:py-1 cursor-pointer rounded-lg bg-transparent dark:text-white focus:outline-none">
+                    <option class="dark:bg-[#040D12] dark-text-white">Show all</option>
+                    <option class="dark:bg-[#040D12] dark-text-white">Pending</option>
+                    <option class="dark:bg-[#040D12] dark-text-white">Completed</option>
                 </select>
             </div>
 
             <!-- Task List Div -->
             <div class="flex flex-col gap-4">
                 <!-- Task Div -->
-                <div class="flex justify-between border border-[#fa9924] rounded-lg">
+                <div class="w-full flex justify-between border border-[#fa9924] rounded-lg">
                     <!-- Task Name -->
-                    <p class="flex-1 dark:text-white text-lg p-3 md:p-4">Sample Text</p>
+                    <p class="flex-1 dark:text-white md:text-lg p-3 md:p-4">Sample Text</p>
                     <!-- Buttons Div -->
-                    <div class="flex items-stretch gap-4 px-4">
-                        <button class="text-[#0d9a77] font-[500] focus:outline-none">EDIT</button>
-                        <button class="text-[#fa9924] font-[500] focus:outline-none">COMPLETED</button>
-                        <button class="text-[#d71437] font-[500] focus:outline-none">DELETE</button>
+                    <div class="flex justify-evenly items-center gap-4 px-4">
+                        <button title="Edit Task"
+                            class="text-[#0d9a77] font-[500] text-md md:text-lg focus:outline-none fa fa-edit"></button>
+                        <button title="Mark as Complete"
+                            class="text-[#fa9924] font-[500] text-md md:text-lg focus:outline-none fa fa-check"></button>
+                        <button title="Delete Task"
+                            class="text-[#d71437] font-[500] text-md md:text-lg focus:outline-none fa fa-trash"></button>
                     </div>
                 </div>
 
@@ -50,6 +58,7 @@
 
         </div>
     </main>
+    <script src="script.js"></script>
 </body>
 
 </html>
