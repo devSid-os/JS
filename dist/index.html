@@ -12,7 +12,7 @@
 <!-- Tailwind style structure -->
 <!-- [width,heights] flexProperties paddings text borders -->
 
-<body class="min-h-screen flex justify-center items-center dark:bg-[#040D12]">
+<body class="min-h-screen flex justify-center items-center bg-[#F6F1EE] dark:bg-[#272829]">
 
     <div id="overlay" class="w-screen h-full flex justify-center items-center absolute z-10 opacity-80 bg-black hidden">
     </div>
@@ -31,13 +31,12 @@
                 <input type="text" id="taskName" placeholder="What are your tasks for today?"
                     class="flex-1 p-3 dark:text-white bg-transparent border-black dark:border-white border rounded-lg tracking-wide md:p-4 focus:outline-none">
                 <button onclick="addTask()" type="button"
-                    class="px-4 dark:text-white tracking-wide border border-black dark:border-white rounded-lg transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-[#000] focus:outline-none md:px-6">Add</button>
+                    class="px-4 dark:text-white tracking-wide border border-black dark:border-white rounded-lg transition hover:bg-[#272829] hover:text-white dark:hover:bg-white dark:hover:text-[#000] focus:outline-none md:px-6">Add</button>
             </div>
 
             <!-- Filter Tasks Div -->
             <div class="border-b border-black dark:border-white">
-                <select
-                onchange="filterTaskListDiv(this)"
+                <select onchange="filterTaskListDiv(this)"
                     class="w-full cursor-pointer rounded-lg bg-transparent tracking-wider select-none dark:text-white focus:outline-none md:py-1">
                     <option value="pending" class="dark:bg-[#040D12] dark-text-white">Pending Tasks</option>
                     <option value="completed" class="dark:bg-[#040D12] dark-text-white">Completed Tasks</option>
@@ -66,6 +65,13 @@
 
         </div>
     </main>
+    <div id="modeDiv" onclick="switchModes()" style="box-shadow: -1px -1px 8px #fff;" class="absolute cursor-pointer rounded-lg bg-[#272829] dark:bg-white p-2 bottom-6 right-6" title="Switch to light mode">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+            class="bi bi-moon cursor-pointer font-bold text-white dark:text-[#272829]" viewBox="0 0 16 16">
+            <path id="modePath"
+                d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+        </svg>
+    </div>
     <script src="script.js"></script>
 </body>
 
