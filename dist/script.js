@@ -4,6 +4,8 @@ let completedTasks = [];
 const overlay = document.querySelector("#overlay");
 const loader = document.querySelector("#loader");
 const taskListDiv = document.querySelector("#taskListDiv");
+const modal = document.querySelector("#editModal");
+const editInput = document.getElementById("editInput")
 let selectedFilter = "pending";
 let selectedMode = "dark";
 
@@ -35,9 +37,14 @@ filterTasks();
 
 function showEmptyMessage() {
     const heading3 = document.createElement("h3");
+    const tempImg = document.createElement("img");
+    tempImg.src = "loader.png";
+    tempImg.classList.add("w-[10%]");
+    tempImg.id = "emptyImg";
     heading3.textContent = "No tasks to show";
     heading3.id = "emptyMessage";
     heading3.classList.add("dark:text-white", "text-xl");
+    taskListDiv.appendChild(tempImg);
     taskListDiv.appendChild(heading3);
 }
 
@@ -56,6 +63,7 @@ function createTaskDiv(task) {
     buttonDiv.classList.add("flex", "justify-evenly", "items-center", "gap-4", "px-4");
     // Edit Button
     const editButton = document.createElement("button");
+    editButton.addEventListener("click", (e) => openModalEdit(e));
     editButton.setAttribute("title", "Edit Task");
     editButton.classList.add("text-[#0d9a77]", "font-[500]", "text-md", "md:text-lg", "focus:outline-none", "fa", "fa-edit");
     // Complete Button
@@ -122,8 +130,12 @@ function addTaskToLocalStorage(taskName) {
     overlay.classList.add("hidden");
     loader.classList.add("hidden");
     // Hide empty message on adding task
-    selectedFilter === "pending" && createTaskDiv(object);
-    if (taskListDiv.children.length) document.getElementById("emptyMessage").remove();
+    // selectedFilter === "pending" && createTaskDiv(object);
+    if (selectedFilter === "pending" && taskListDiv.children.length) {
+        if (document.getElementById("emptyMessage")) document.getElementById("emptyMessage").remove();
+        if (document.getElementById("emptyImg")) document.getElementById("emptyImg").remove();
+        createTaskDiv(object);
+    }
 }
 
 function addTask() {
@@ -143,7 +155,6 @@ function addTask() {
 }
 
 function filterTaskListDiv(e) {
-    // console.log("hello")
     filterTasks();
     while (taskListDiv.firstChild) taskListDiv.removeChild(taskListDiv.firstChild);
     if (e.value === "pending") {
@@ -154,10 +165,40 @@ function filterTaskListDiv(e) {
         selectedFilter = "completed";
         completedTasks.map(task => createTaskDiv(task));
     }
-
     if (!taskListDiv.children.length) showEmptyMessage();
-
 }
+
+function openModalEdit(e) {
+    const targetDivId = e.target.parentElement.parentElement.id;
+    overlay.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    const task = localStorageTasks.filter(task => task.id === targetDivId);
+    editInput.value = task[0].taskName;
+    document.getElementById("hiddenTaskId").value = task[0].id;
+    document.getElementById("editCreatedAt").textContent = "Task Created on: " + task[0].date;
+    document.getElementById("editStatus").textContent = "Status: " + task[0].status.toUpperCase();
+}
+
+function saveEditTask() {
+    const taskDivId = document.querySelector("#hiddenTaskId").value;
+    document.getElementById(taskDivId).firstChild.textContent = editInput.value;
+    localStorageTasks.map(task => task.id === taskDivId ? task.taskName = editInput.value : task);
+    localStorage.setItem("taskList", JSON.stringify(localStorageTasks));
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+}
+
+function closeEditModal() {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+}
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+        if (!(modal.classList.contains("hidden"))) closeEditModal();
+    }
+});
+
 
 if (!pendingTasks.length) showEmptyMessage();
 else pendingTasks.map((task, index) => createTaskDiv(task));
